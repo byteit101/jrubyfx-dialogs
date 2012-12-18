@@ -5,7 +5,7 @@ class RubyFXDialog < FXController
   fx_id :messageLabel
   fx_id :icon
   
-  def initialize(type, description, title, stage)
+  def initialize(type, title, description, stage)
     @type = type
     @type = :info if ![:info,:warn,:error,:debug].include?(type.to_sym)
     @description = description
@@ -29,9 +29,11 @@ class RubyFXDialog < FXController
     end
   end
   
-  def self.alert(type, description, title=nil)
+  def self.alert(type, title, description)
     stage = Stage.new
-    RubyFXDialog.load_fxml("res/AlertDialog.fxml", stage, :relative_to => __FILE__, :initialize => [type, description, title || type.to_s, stage]).show
+    RubyFXDialog.load_fxml("res/AlertDialog.fxml", stage, 
+      :relative_to => __FILE__, 
+      :initialize => [type, title, description, stage]).show
   end
   
   class << self
