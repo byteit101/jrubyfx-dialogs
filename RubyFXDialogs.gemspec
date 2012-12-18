@@ -4,13 +4,15 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'RubyFXDialogs/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "RubyFXDialogs"
+  gem.name          = "rubyfx-dialogs"
   gem.version       = RubyFXDialogs::VERSION
   gem.authors       = ["Patrick Plenefisch"]
   gem.email         = ["simonpatp@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = "Useful JavaFX dialogs for ruby"
+  gem.summary       = "Useful JavaFX dialogs for ruby"
   gem.homepage      = ""
+  
+  gem.add_dependency "jrubyfxml"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
