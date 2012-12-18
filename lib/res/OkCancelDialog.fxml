@@ -9,13 +9,11 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="20.0" xmlns:fx="http://javafx.com/fxml">
+<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="550" minHeight="80" minWidth="450" vgap="20.0" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <ImageView fx:id="icon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
-      <image>
+    <BorderPane fx:id="icon" maxHeight="60" maxWidth="60" minHeight="60" minWidth="60" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
         <!-- place holder -->
-      </image>
-    </ImageView>
+    </BorderPane>
     <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
       <children>
         <Label fx:id="messageLabel" text="message" textAlignment="LEFT" wrapText="true">
@@ -38,14 +36,14 @@
           </HBox.margin>
         </HBox>
         <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS" />
-        <Button fx:id="cancelButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" onAction="cancel" text="Cancel" HBox.hgrow="NEVER">
+        <Button fx:id="cancelButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" HBox.hgrow="NEVER">
           <HBox.margin>
             <Insets />
           </HBox.margin>
         </Button>
         <HBox id="HBox" fx:id="okParent" alignment="CENTER">
           <children>
-            <Button fx:id="okButton" defaultButton="true" minWidth="80.0" mnemonicParsing="false" onAction="ok" text="Ok" HBox.hgrow="NEVER">
+            <Button fx:id="okButton" defaultButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#ok" text="Ok" HBox.hgrow="NEVER">
               <HBox.margin>
                 <Insets left="14.0" />
               </HBox.margin>
