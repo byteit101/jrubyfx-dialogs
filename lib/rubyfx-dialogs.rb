@@ -19,7 +19,7 @@ class RubyFXDialog < FXController
   
   def show
     @messageLabel.text = @description
-    @icon.center = RubyFXDialog.load_fxml_resource("res/dialog-information.fxml", nil, __FILE__)
+    @icon.center = RubyFXDialog.load_fxml_resource("res/dialog-#{@type}.fxml", nil, __FILE__)
     with(@stage, :resizable => false) do
       initModality Java.javafx.stage.Modality::APPLICATION_MODAL
       sizeToScene
