@@ -7,6 +7,7 @@ class RubyFXDialog < FXController
   
   def initialize(type, description, title, stage)
     @type = type
+    @type = :info if ![:info,:warn,:error,:debug].include?(type.to_sym)
     @description = description
     stage.title = title
     @stage = stage

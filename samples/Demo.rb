@@ -13,6 +13,7 @@ class DemoApp < FXApplication
     RubyFXDialog.info("This is another way to specify an info dialog", "And it still work!")
     RubyFXDialog.warn("But be careful, monsters lurk.", "Be careful")
     RubyFXDialog.error("...then you can scream OH NOES! I broke the universe! Sorry :(", "And if you have a fatal error")
+    RubyFXDialog.alert(:evil_type, "Invalid types default to :info", "You must use the provided types")
   end
 end
 
