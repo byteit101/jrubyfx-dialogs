@@ -5,14 +5,17 @@ class RubyFXDialog < FXController
   fx_id :messageLabel
   fx_id :icon
   fx_id :detailsLabel
+  fx_id :okButton
+  fx_id :cancelButton
   
-  def initialize(type, title, message, details="", stage)
+  def initialize(type, title, message, details="", buttons=nil, stage)
     @type = type
     @type = :info if ![:info,:warn,:error,:question].include?(type.to_sym)
     @details = details
     @message = message
     stage.title = title
     @stage = stage
+    @buttons = buttons
     # can't set the message label because its not injected yet...
   end
   
@@ -27,6 +30,10 @@ class RubyFXDialog < FXController
   end
   
   def show
+    unless @buttons == nil
+      @okButton.text = @buttons[0] #bad
+      @cancelButton.text = @buttons[1] # bad
+    end
     @messageLabel.text = @message
     @detailsLabel.text = @details unless @detailsLabel == nil
     @icon.center = RubyFXDialog.load_fxml_resource("res/dialog-#{@type}.fxml", nil, __FILE__)
@@ -51,6 +58,13 @@ class RubyFXDialog < FXController
     RubyFXDialog.load_fxml("res/OkCancelDialog.fxml", stage, 
       :relative_to => __FILE__, 
       :initialize => [type, title, message, details, stage]).show
+  end
+  
+  def self.dialog(icon_name, title, message, details, buttons)
+    stage = Stage.new
+    RubyFXDialog.load_fxml("res/OkCancelDialog.fxml", stage, 
+      :relative_to => __FILE__, 
+      :initialize => [icon_name, title, message, details, buttons, stage]).show
   end
   
   class << self
