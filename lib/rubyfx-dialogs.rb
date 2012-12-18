@@ -18,18 +18,18 @@ class RubyFXDialog < FXController
   end
   
   def show
-    # run_later do # run on proper thread!
     @messageLabel.text = @description
     @icon.center = RubyFXDialog.load_fxml_resource("res/Dialog-info.fxml", nil, __FILE__)
-    @stage.resizable = false
-    @stage.sizeToScene
-    @stage.centerOnScreen
-    @stage.showAndWait
-    #end
+    with(@stage, :resizable => false) do
+      initModality Java.javafx.stage.Modality::APPLICATION_MODAL
+      sizeToScene
+      centerOnScreen
+      showAndWait
+    end
   end
   
-  def self.alert_modal(type, description, title=nil)
+  def self.alert(type, description, title=nil)
     stage = Stage.new
-    RubyFXDialog.load_fxml("res/AlertDialog.fxml", stage, :relative_to => __FILE__, :initialize => [type, description, title, stage]).show
+    RubyFXDialog.load_fxml("res/AlertDialog.fxml", stage, :relative_to => __FILE__, :initialize => [type, description, title || type.to_s, stage]).show
   end
 end
