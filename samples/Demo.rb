@@ -10,6 +10,7 @@ class DemoApp < FXApplication
         "This is an Info dialog, notice the nice I? Please click Ok now. " + 
         "This Dialog is very long. You might want nice short dialogs so they are readable, but if you have "+
         "Long ones also that is fine, as it will, as you may already see, wrap its self to fit the dialog!", "This is an info dialog Title")
+    RubyFXDialog.info("This is another way to specify an info dialog", "And it still work!")
   end
 end
 

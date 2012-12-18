@@ -32,4 +32,15 @@ class RubyFXDialog < FXController
     stage = Stage.new
     RubyFXDialog.load_fxml("res/AlertDialog.fxml", stage, :relative_to => __FILE__, :initialize => [type, description, title || type.to_s, stage]).show
   end
+  
+  class << self
+    [:info,:warn,:error,:debug].each do |type|
+      self.instance_eval do
+        # define the handy overloads that just pass our arguments in
+        define_method(type) do |description, title|
+          alert(type, description, title)
+        end
+      end
+    end
+  end
 end
