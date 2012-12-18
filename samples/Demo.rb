@@ -14,6 +14,7 @@ class DemoApp < FXApplication
     RubyFXDialog.warn("Be careful", "But be careful, monsters lurk.")
     RubyFXDialog.error("And if you have a fatal error", "...then you can scream OH NOES! I broke the universe! Sorry :(")
     RubyFXDialog.alert(:evil_type, "You must use the provided types", "Invalid types default to :info")
+    p RubyFXDialog.prompt(:question, "How are you doing?", "Do you want to continue?", "This thing can even ask you questions!")
   end
 end
 
