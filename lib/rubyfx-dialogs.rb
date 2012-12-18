@@ -10,7 +10,7 @@ class RubyFXDialog < FXController
     @description = description
     stage.title = title
     @stage = stage
-    # can't set the message label because its not set yet...
+    # can't set the message label because its not injected yet...
   end
   
   fx_handler :ok do
@@ -21,7 +21,10 @@ class RubyFXDialog < FXController
     # run_later do # run on proper thread!
     @messageLabel.text = @description
     @icon.center = RubyFXDialog.load_fxml_resource("res/Dialog-info.fxml", nil, __FILE__)
-    @stage.show
+    @stage.resizable = false
+    @stage.sizeToScene
+    @stage.centerOnScreen
+    @stage.showAndWait
     #end
   end
   

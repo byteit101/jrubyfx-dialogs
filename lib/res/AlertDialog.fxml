@@ -9,9 +9,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="20.0" xmlns:fx="http://javafx.com/fxml">
+<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="550" minHeight="80" minWidth="450" vgap="20.0" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <BorderPane fx:id="icon"  GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
+    <BorderPane fx:id="icon" maxHeight="60" maxWidth="60" minHeight="60" minWidth="60" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
         <!-- place holder -->
     </BorderPane>
     <VBox alignment="CENTER_LEFT" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
