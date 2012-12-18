@@ -15,7 +15,11 @@ class DemoApp < FXApplication
     RubyFXDialog.error("And if you have a fatal error", "...then you can scream OH NOES! I broke the universe! Sorry :(")
     RubyFXDialog.alert(:evil_type, "You must use the provided types", "Invalid types default to :info")
     p RubyFXDialog.prompt(:question, "How are you doing?", "Do you want to continue?", "This thing can even ask you questions!")
-    p RubyFXDialog.dialog(:warning, "Don't abuse it", "Custom Dialogs are powerful", "Don't take over the world", ["Sigh", "Never!"])
+    p RubyFXDialog.prompt(:warning, "Don't abuse it", "Custom Dialogs are powerful", 
+      "Don't take over the world", 
+      :buttons => {"Sigh" => :sigh, "Never!" => :never, "(Evil Grin)" => :evil},
+      :default => :never, :cancel => :sigh,
+      :left => :evil)
   end
 end
 
