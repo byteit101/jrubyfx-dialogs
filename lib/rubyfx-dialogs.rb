@@ -19,12 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 require "jrubyfxml"
 
 class RubyFXDialog < FXController
-  fx_id :messageLabel
-  fx_id :icon
-  fx_id :detailsLabel
-  fx_id :okButton
-  fx_id :cancelButton
-  fx_id :buttonRow
+  fx_id :messageLabel, :icon, :detailsLabel, :okButton, :cancelButton, :buttonRow
   
   def initialize(type, title, message, details="", options={}, stage)
     @type = type
@@ -41,12 +36,8 @@ class RubyFXDialog < FXController
     @stage.close
   end
   
-  fx_handler :ok do
-    close_with_status :ok
-  end
-  
-  fx_handler :cancel do
-    close_with_status :cancel
+  fx_handler [:ok, :cancel] do |event|
+    close_with_status event.target == @okButton ? :ok : :cancel
   end
   
   def show
