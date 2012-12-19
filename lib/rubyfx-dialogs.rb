@@ -78,7 +78,7 @@ class RubyFXDialog < FXController
     # sanity check
     @type = :info if ![:info,:warn,:error,:question].include?(@type.to_sym)
     # load the icon
-    @icon.center = RubyFXDialog.load_fxml_resource("res/dialog-#{@type}.fxml", nil, __FILE__)
+    @icon.center = RubyFXDialog.load_fxml_resource("res/dialog-#{@type}.fxml")
     # Set properties on the stage
     with(@stage, :resizable => false) do
       initModality Modality::APPLICATION_MODAL
@@ -94,7 +94,6 @@ class RubyFXDialog < FXController
   def self.alert(type, title, description)
     stage = Stage.new
     RubyFXDialog.load_fxml("res/AlertDialog.fxml", stage, 
-      :relative_to => __FILE__, 
       :initialize => [type, title, description, "", stage]).show
   end
   
@@ -102,7 +101,6 @@ class RubyFXDialog < FXController
   def self.prompt(type, title, message, details="", options={})
     stage = Stage.new
     RubyFXDialog.load_fxml("res/OkCancelDialog.fxml", stage, 
-      :relative_to => __FILE__, 
       :initialize => [type, title, message, details, options, stage]).show
   end
   
