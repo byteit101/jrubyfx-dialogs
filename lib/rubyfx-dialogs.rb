@@ -62,7 +62,7 @@ class RubyFXDialog < FXController
         end
         
         # Set the margin and on click
-        HBox.set_margin btn, Java.javafx.geometry.Insets.new(0,0,0,16)
+        HBox.set_margin btn, Insets.new(0,0,0,16)
         btn.set_on_action do
           close_with_status value
         end
@@ -81,7 +81,7 @@ class RubyFXDialog < FXController
     @icon.center = RubyFXDialog.load_fxml_resource("res/dialog-#{@type}.fxml", nil, __FILE__)
     # Set properties on the stage
     with(@stage, :resizable => false) do
-      initModality Java.javafx.stage.Modality::APPLICATION_MODAL
+      initModality Modality::APPLICATION_MODAL
       sizeToScene
       centerOnScreen
       showAndWait # show, and this will not return until stage.close in the event handlers
