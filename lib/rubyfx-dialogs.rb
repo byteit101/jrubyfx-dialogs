@@ -22,6 +22,9 @@ class RubyFXDialog < FXController
   # register all our fx:id's
   fx_id :messageLabel, :icon, :detailsLabel, :okButton, :cancelButton, :buttonRow
   
+  # this controller will be used for multiple forms, so silence the warnings
+  silence_id_warnings
+  
   def initialize(type, title, message, details="", options={}, stage)
     @type = type
     @details = details
