@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 require "jrubyfxml"
 
 class RubyFXDialog < FXController
+  # register all our fx:id's
   fx_id :messageLabel, :icon, :detailsLabel, :okButton, :cancelButton, :buttonRow
   
   def initialize(type, title, message, details="", options={}, stage)
@@ -31,17 +32,21 @@ class RubyFXDialog < FXController
     # can't set the message label because its not injected yet...
   end
   
+  # Call this to close the dialog
   def close_with_status(status)
     @result = status
     @stage.close
   end
   
+  # register the ok and cancel handlers to close
   fx_handler [:ok, :cancel] do |event|
     close_with_status event.target == @okButton ? :ok : :cancel
   end
   
   def show
+    # do we have custom buttons?
     unless @options[:buttons] == nil
+      # if so, remove the standard ones
       @buttonRow.children.remove_all  @okButton, @cancelButton
       @options[:buttons].each do |desc, value|
         # Create the new button
@@ -49,9 +54,9 @@ class RubyFXDialog < FXController
           cancel_button: @options[:cancel] == value, 
           default_button: @options[:default] == value)
         
-        # add it to the panel
+        # add it to the panel, checking if its in the left list or not
         @buttonRow.children.add *if [(@options[:left] || [])].flatten.include? value
-          [0, btn]
+          [0, btn] # if it in the left list, insert it at position 0
         else
           [btn]
         end
@@ -64,21 +69,28 @@ class RubyFXDialog < FXController
         btn.request_focus if @options[:default] == value
       end
     else
+      # set the default button the default :)
       @okButton.request_focus
     end
+    # update our labels
     @messageLabel.text = @message
     @detailsLabel.text = @details unless @detailsLabel == nil
+    # sanity check
     @type = :info if ![:info,:warn,:error,:question].include?(@type.to_sym)
+    # load the icon
     @icon.center = RubyFXDialog.load_fxml_resource("res/dialog-#{@type}.fxml", nil, __FILE__)
+    # Set properties on the stage
     with(@stage, :resizable => false) do
       initModality Java.javafx.stage.Modality::APPLICATION_MODAL
       sizeToScene
       centerOnScreen
-      showAndWait
+      showAndWait # show, and this will not return until stage.close in the event handlers
     end
+    # return our results
     @result || :ok
   end
   
+  # For single message dialogs, just alert
   def self.alert(type, title, description)
     stage = Stage.new
     RubyFXDialog.load_fxml("res/AlertDialog.fxml", stage, 
@@ -86,6 +98,7 @@ class RubyFXDialog < FXController
       :initialize => [type, title, description, "", stage]).show
   end
   
+  # for multi-option prompts, we have more options
   def self.prompt(type, title, message, details="", options={})
     stage = Stage.new
     RubyFXDialog.load_fxml("res/OkCancelDialog.fxml", stage, 
@@ -93,6 +106,7 @@ class RubyFXDialog < FXController
       :initialize => [type, title, message, details, options, stage]).show
   end
   
+  # alias alerts
   class << self
     [:info,:warn,:error].each do |type|
       self.instance_eval do
