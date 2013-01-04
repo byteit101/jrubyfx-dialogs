@@ -16,9 +16,9 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 =end
 
-require "jrubyfxml"
+require "jrubyfx"
 
-class RubyFXDialog < FXController
+class RubyFXDialog < JRubyFX::Controller
   # register all our fx:id's
   fx_id :messageLabel, :icon, :okButton
   # this controller will be used for multiple forms, so these are not always avalible

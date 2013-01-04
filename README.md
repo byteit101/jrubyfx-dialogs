@@ -4,7 +4,7 @@ Small gem to create standard dialogs in JavaFX from Ruby
 
 ## Installation
 
-Please install JRubyFXML first, as this depends on it. Then run:
+Please install JRubyFX first, as this depends on it. Then run:
 
     $ rake install
 

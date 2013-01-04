@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.summary       = "Useful JavaFX dialogs for ruby"
   gem.homepage      = ""
   
-  gem.add_dependency "jrubyfxml"
+  gem.add_dependency "jrubyfx"
 
   gem.files         = Dir.glob("lib/**/*") + %w(LICENSE.txt README.md)
   gem.executables   = []

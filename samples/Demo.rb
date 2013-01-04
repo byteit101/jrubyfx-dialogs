@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require 'rubyfx-dialogs'
 
-class DemoApp < FXApplication
+class DemoApp < JRubyFX::Application
   def start(stage)
     RubyFXDialog.alert(:info, "This is an info dialog Title", "This is an Info dialog, notice the nice I? Please click Ok now." + 
         "This Dialog is very long. You might want nice short dialogs so they are readable, but if you have "+
